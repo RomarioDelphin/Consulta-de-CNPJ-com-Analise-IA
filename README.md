@@ -2,8 +2,7 @@
 
 Este projeto é uma aplicação web full-stack que vai além de uma simples consulta de dados. Ele utiliza um backend em Python (Flask) para consumir a API da ReceitaWS e aplicar uma camada de inteligência, gerando uma análise de risco simplificada ("Termômetro IA") em tempo real.
 
-![Demo do Projeto](URL_DO_SEU_NOVO_GIF_AQUI)
-*(Dica: Grave um novo GIF mostrando a ferramenta funcionando com o card do "Termômetro IA" e substitua a URL acima)*
+![Demo do Projeto]
 
 ---
 
