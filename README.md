@@ -17,17 +17,14 @@
 
 ## ⚡ Sobre o Projeto
 
-O **Fiscal Risk AI** é uma aplicação Full-Stack desenvolvida para ir além da simples consulta de dados. Ela atua como uma ferramenta de **Compliance Automatizado**.
+O **Fiscal Risk AI** é um protótipo de consulta de CNPJ com interface web, backend Flask e classificação indicativa baseada em duas regras explícitas.
 
-Diferente de consultas comuns, este sistema utiliza um Backend robusto em **Python (Flask)** para processar os dados brutos da Receita Federal e aplicar uma camada de inteligência ("Termômetro IA"). O algoritmo classifica a saúde fiscal da empresa em tempo real, permitindo tomada de decisão imediata para concessão de crédito ou parcerias.
+O backend consulta a API ReceitaWS e sinaliza quando a situação cadastral não está ativa ou quando a empresa tem menos de um ano de abertura. Não há modelo de aprendizado de máquina, avaliação de risco de crédito ou validação para tomada de decisões comerciais. A consulta depende da disponibilidade e das condições da API externa.
 
 ### 🎯 Funcionalidades Core
-* **🌡️ Termômetro de Risco IA:** Algoritmo proprietário que cruza dados (Idade da empresa, Capital Social, Situação Cadastral) para classificar o CNPJ em:
-    * 🟢 **Saudável:** Seguro para negócios.
-    * 🟡 **Ponto de Atenção:** Requer análise humana.
-    * 🔴 **Risco Elevado:** Indícios de irregularidade ou baixa confiabilidade.
-* **🔒 Backend Seguro:** Substituição de proxies instáveis por um servidor Flask que gerencia as requisições de forma segura.
-* **📑 Dossiê Completo:** Extração detalhada de Sócios (QSA), Endereços e Atividade Econômica (CNAE).
+* **🌡️ Sinalização por regras:** Situação cadastral diferente de `ATIVA` recebe alerta vermelho; abertura há menos de um ano, alerta laranja. Outros casos recebem verde. Capital social não participa da classificação.
+* **🔌 Backend Flask:** Repassa dados da API externa e acrescenta a sinalização. A configuração atual habilita CORS amplo e modo debug ao executar diretamente; requer revisão antes de qualquer implantação pública.
+* **📑 Dados cadastrais:** A interface exibe campos retornados pela API, cuja cobertura e atualidade devem ser conferidas na fonte.
 * **🖥️ Interface Reativa:** Frontend limpo e responsivo para uso corporativo.
 
 ---
@@ -42,10 +39,10 @@ A arquitetura evoluiu de um simples frontend para uma solução robusta de Engen
 
 | Camada | Tecnologia | Função |
 | :--- | :--- | :--- |
-| **Backend** | `Python 3 + Flask` | API Gateway, Regras de Negócio e Lógica de IA. |
+| **Backend** | `Python 3 + Flask` | Consulta à API externa e aplicação das duas regras. |
 | **Frontend** | `Vanilla JS + CSS3` | Interface do Usuário e Renderização Dinâmica. |
-| **Integração** | `Requests + CORS` | Comunicação segura com APIs governamentais. |
-| **Dados** | `ReceitaWS` | Fonte primária de dados públicos. |
+| **Integração** | `Requests + CORS` | Requisição à API externa e liberação de acesso do navegador. |
+| **Dados** | `ReceitaWS` | Serviço de terceiros consultado pelo protótipo. |
 
 ---
 
@@ -61,7 +58,7 @@ Siga os passos abaixo para executar a aplicação Full-Stack em seu ambiente loc
 
 ```bash
 # Clone o repositório
-git clone [https://github.com/RomarioDelphin/Consulta-de-CNPJ-com-Analise-IA.git](https://github.com/RomarioDelphin/Consulta-de-CNPJ-com-Analise-IA.git)
+git clone https://github.com/RomarioDelphin/Consulta-de-CNPJ-com-Analise-IA.git
 
 # Entre na pasta
 cd Consulta-de-CNPJ-com-Analise-IA
@@ -94,15 +91,15 @@ python app.py
 
 * Vá até a pasta do projeto.
 * Abra o arquivo `index.html` no seu navegador.
-* Digite um CNPJ e veja a mágica da IA acontecer.
+* Digite um CNPJ para consultar os dados e ver os alertas produzidos pelas duas regras.
 
 ---
 
 ## 📈 Evolução do Projeto
 
-Este software representa um marco na transição de **Frontend Development** para **Backend Engineering & Data Science**.
+Este protótipo demonstra a evolução de uma interface estática para uma aplicação com backend e regras explícitas.
 
-A implementação do "Termômetro IA" demonstra a capacidade de transformar dados brutos em **Informação Estratégica**, princípio fundamental da **RAM.IO Holdings**.
+A sinalização é indicativa e não mede inadimplência, capacidade de pagamento nem confiabilidade de parceiros. Para uso operacional, seria necessário validar a fonte, tratar privacidade e erros, definir critérios com especialistas e testar a solução com dados adequados.
 
 ---
 
